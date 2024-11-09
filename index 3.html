@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Client_Data </h1>
+        <form action="/" method="POST" onsubmit="return validateForm()">
+            <label for="client_name">Client Name:</label>
+            <input type="text" id="client_name" name="client_name" required>
+
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="analysis_type">Select Analysis Type:</label>
+            <select id="analysis_type" name="analysis_type" required>
+                <option value="market_analysis">Market Analysis</option>
+                <option value="customer_insights">Customer Insights</option>
+                <option value="sales_forecasting">Sales Forecasting</option>
+                <option value="trend_analysis">Trend Analysis</option>
+            </select>
+
+            <button type="submit">Run Analysis</button>
+        </form>
+
+        <div class="result" id="result" style="display:none;">
+            <h2>Analysis Results:</h2>
+            <pre id="analysis_output">{{ result }}</pre>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Basic validation can be added here
+            // For example, checking if the email format is correct
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            return true;
+        }
+
+        // Simulate result display for demonstration purposes
+        document.querySelector('form').onsubmit = function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('analysis_output').textContent = 'Analysis completed successfully!';
+        };
+    </script>
+</body>
+</html>
